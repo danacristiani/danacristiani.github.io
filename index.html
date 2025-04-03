@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Digital</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(to bottom, #b0f4de, #a2e63f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #ffeb99;
+        }
+        .container {
+            width: auto;
+            max-width: 1100px;
+            text-align: center;
+            position: relative;
+        }
+        .banner {
+            width: 100%;
+            height: 200px;
+            background-color: #8ecae6;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 6px solid #ffeb99;
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 100px;
+        }
+        .text-box {
+            width: auto;
+            max-width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: black;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .button {
+            font-family: 'Comic Neue', cursive;
+            padding: 12px 20px;
+            border: none;
+            background-color: #ffcc80;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ffa726;
+            transform: scale(1.05);
+        }
+        .carousel {
+            width: 100%;
+            max-width: 600px;
+            height: 375px;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .carousel img.active {
+            opacity: 1;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .arrow-left {
+            left: 10px;
+        }
+        .arrow-right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner"></div>
+        <img src="profile.jpg" alt="Foto de perfil" class="profile-pic">
+        <div class="content">
+            <div class="text-box">
+                My name is Danutz, I'm a freelance artist.<br>
+                I want to share with you my art, also the opportunity to offer my services as an artist.<br>
+                Below you will find buttons that will redirect you to the art gallery, the price list, my terms and conditions and finally social networks where you can find out more about me!
+            </div>
+            <div class="buttons">
+                <button class="button">Botón 1</button>
+                <button class="button">Botón 2</button>
+                <button class="button">Botón 3</button>
+            </div>
+            <div class="carousel">
+                <button class="arrow arrow-left" onclick="prevSlide()">&#9664;</button>
+                <img src="Assets/Imagen1.jpg" class="active" alt="Imagen 1">
+                <img src="Assets/Imagen2.jpg" alt="Rosenrot">
+                <img src="Assets/Imagen3.jpg" alt="Last goodbye">
+                <img src="Assets/Imagen4.jpg" alt="Melting hug">
+                <img src="Assets/Imagen5.jpg" alt="Childhood pain">
+                <button class="arrow arrow-right" onclick="nextSlide()">&#9654;</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+        function showSlide(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+            });
+            images[index].classList.add('active');
+        }
+        function prevSlide() {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            showSlide(currentIndex);
+        }
+        function nextSlide() {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showSlide(currentIndex);
+        }
+        showSlide(currentIndex);
+    </script>
+</body>
+</html>
