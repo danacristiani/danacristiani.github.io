@@ -82,14 +82,16 @@
             cursor: pointer;
             font-size: 16px;
             transition: 0.3s ease;
+            text-decoration: none;
+            color: black;
+            display: inline-block;
         }
         .button:hover {
             background-color: #ffa726;
             transform: scale(1.05);
         }
         .carousel {
-            width: 100%;
-            max-width: 600px;
+            width: 600px;
             height: 375px;
             overflow: hidden;
             position: relative;
@@ -98,14 +100,15 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .carousel img {
-            width: 100%;
-            height: 100%;
+            width: 600px;
+            height: 375px;
             object-fit: cover;
             position: absolute;
             top: 0;
             left: 0;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
+            image-rendering: crisp-edges;
         }
         .carousel img.active {
             opacity: 1;
@@ -128,52 +131,84 @@
         .arrow-right {
             right: 10px;
         }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-button img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        .social-button img:hover {
+            transform: scale(1.1);
+        }
     </style>
+    <script>
+        let currentIndex = 0;
+        function showSlide(index) {
+            let slides = document.querySelectorAll('.carousel img');
+            if (index >= slides.length) currentIndex = 0;
+            else if (index < 0) currentIndex = slides.length - 1;
+            else currentIndex = index;
+            slides.forEach((img, i) => img.classList.toggle('active', i === currentIndex));
+        }
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            showSlide(currentIndex);
+        });
+    </script>
 </head>
 <body>
     <div class="container">
         <div class="banner"></div>
-        <img src="profile.jpg" alt="Foto de perfil" class="profile-pic">
+        <img src="Assets/miniperfil.jpg" alt="Foto de perfil" class="profile-pic">
         <div class="content">
             <div class="text-box">
-                My name is Danutz, I'm a freelance artist.<br>
-                I want to share with you my art, also the opportunity to offer my services as an artist.<br>
-                Below you will find buttons that will redirect you to the art gallery, the price list, my terms and conditions and finally social networks where you can find out more about me!
-            </div>
+                ˗ˏˋ ★ ˎˊ˗ I'm Danutz, a freelance artist ˗ˏˋ ★ ˎˊ˗ <br>
+                <br>
+                                I want to share with you my artwork, also the opportunity to offer my services as an digital artist (o´ω`o)ﾉ	  <br>
+                                <br>
+                                Below you will find buttons that will redirect you to my last work on a videogame as the
+                                director and main artist 🎨<br>
+                                <br>
+                            
+
+                                 You can find out more info about me on the social networks, hehehe („• ᴗ •„)<br>  
+                                
+                                <br>
+                                And there are some of my artwork, please follow me on the other social media for more! ヾ(・ω・*)<br>
+                                <br> Thank You! ♡(>ᴗ•)
+                                  </div>
             <div class="buttons">
-                <button class="button">Botón 1</button>
-                <button class="button">Botón 2</button>
-                <button class="button">Botón 3</button>
+                <a href="https://discordia-en-el-rancho.netlify.app/" class="button">	(˙ω˙)🎮 Discordia en el Rancho 🎮(˙∀˙)</a>
+              
             </div>
             <div class="carousel">
                 <button class="arrow arrow-left" onclick="prevSlide()">&#9664;</button>
-                <img src="Assets/Imagen1.jpg" class="active" alt="Imagen 1">
-                <img src="Assets/Imagen2.jpg" alt="Rosenrot">
-                <img src="Assets/Imagen3.jpg" alt="Last goodbye">
-                <img src="Assets/Imagen4.jpg" alt="Melting hug">
-                <img src="Assets/Imagen5.jpg" alt="Childhood pain">
+                <img src="Assets/Image1.jpg" class="active" alt="Imagen 1">
+                <img src="Assets/Image2.jpg" alt="Rosenrot">
+                <img src="Assets/Image3.jpg" alt="Last goodbye">
+                <img src="Assets/Image4.jpg" alt="Melting hug">
+                <img src="Assets/Image5.jpg" alt="Childhood pain">
                 <button class="arrow arrow-right" onclick="nextSlide()">&#9654;</button>
             </div>
+            
+ </div>
+ <div class="social-buttons">
+     <a href="https://x.com/__danutz" class="social-button"><img src="Assets/twitter x.png" alt="X"></a>
+     <a href="https://www.instagram.com/____danutz/" class="social-button"><img src="Assets/instagram.png" alt="Instagram"></a>
+     <a href="https://www.youtube.com/@danutzART" class="social-button"><img src="Assets/youtube.png" alt="YouTube"></a>
+     <a href="https://www.pixiv.net/en/users/77588629" class="social-button"><img src="Assets/pixiv.png" alt="Pixiv"></a>
+ </div>
         </div>
     </div>
-    <script>
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.carousel img');
-        function showSlide(index) {
-            images.forEach((img, i) => {
-                img.classList.remove('active');
-            });
-            images[index].classList.add('active');
-        }
-        function prevSlide() {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-            showSlide(currentIndex);
-        }
-        function nextSlide() {
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-            showSlide(currentIndex);
-        }
-        showSlide(currentIndex);
-    </script>
 </body>
 </html>
